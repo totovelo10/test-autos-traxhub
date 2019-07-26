@@ -4,10 +4,11 @@ pipeline {
         stage('Test') { 
             steps {
                 bat 'mvn clean verify -Dwebdriver.driver=chrome' 
-            }     
-       }
-    }
-    // publish the Serenity report
+            }   
+            
+            post {
+                always {
+                    // publish the Serenity report
    
     publishHTML(target: [
         reportName : 'Serenity',
@@ -16,5 +17,10 @@ pipeline {
         keepAll:     true,
         alwaysLinkToLastBuild: true,
         allowMissing: false
-    ])
+    ]) 
+                }
+            }
+       }
+    }
+    
 }

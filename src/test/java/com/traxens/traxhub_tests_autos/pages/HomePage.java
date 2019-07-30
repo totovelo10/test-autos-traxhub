@@ -16,8 +16,14 @@ public class HomePage extends PageObject {
 	@FindBy(xpath="//li[@class='dropdown pointer open']//li[5]//a[1]")
 	private WebElementFacade logOut;
 	
+	@FindBy(xpath="//li[@title='Gérer']")
+	private WebElementFacade manageMenu;
+	
 	@FindBy(id="okBtn")
 	private WebElementFacade OkDeconnectButton;
+	
+	@FindBy(xpath="//a[@href='#/equipmentSubcategory']")
+	private WebElementFacade subcategoriesItem;
 	
 	public void shouldDisplay(String account_name) {
 		account_displayname.waitUntilEnabled();
@@ -42,5 +48,19 @@ public class HomePage extends PageObject {
 	public void clickOkDeconnectButton() {
 		OkDeconnectButton.waitUntilClickable();
 		OkDeconnectButton.click();
+	}
+	
+	public void clickOnManage() {
+		manageMenu.waitUntilClickable();
+		manageMenu.click();
+	}
+	
+	public void subcategoriesItemShouldBeVisible() {
+		subcategoriesItem.shouldBeVisible();
+	}
+
+	public void clicksOnSubCategoriesItem() {
+		
+		subcategoriesItem.click();
 	}
 }

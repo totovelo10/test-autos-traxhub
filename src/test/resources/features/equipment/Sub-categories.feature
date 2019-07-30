@@ -40,3 +40,8 @@ Feature: Manage sub-categories equipments
     Examples: 
       | category  |
       | container |
+      | genset    |
+      | pallet    |
+      | trailer   |
+      | unknown   |
+      | wagon     |

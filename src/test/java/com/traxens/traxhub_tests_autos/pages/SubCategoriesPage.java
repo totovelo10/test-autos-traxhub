@@ -7,9 +7,12 @@ import java.util.Locale;
 import net.serenitybdd.core.annotations.findby.FindBy;
 import net.serenitybdd.core.pages.PageObject;
 import net.serenitybdd.core.pages.WebElementFacade;
+import net.thucydides.core.annotations.DefaultUrl;
 
+@DefaultUrl("/equipmentSubcategory")
 public class SubCategoriesPage extends PageObject {
 
+	
 	@FindBy(xpath="//button[@href='#/equipmentSubcategory/new']")
 	private WebElementFacade createSubCategoriesButton;
 
@@ -66,8 +69,8 @@ public class SubCategoriesPage extends PageObject {
 	
 	
 	public void alertMsgShouldBeVisble() {
-		//alertMsg.shouldBeVisible();
-		alertMsg.shouldNotBeVisible();
+		alertMsg.shouldBeVisible();
+		//alertMsg.shouldNotBeVisible();
 	}
 
 }

@@ -52,7 +52,6 @@ public class TraxhubAdminSteps {
 
 	public void save() {
 		subCategoriesPage.clickOnSaveButton();
-		
 	}
 
 	public void shouldSeeAMessageAlert() {

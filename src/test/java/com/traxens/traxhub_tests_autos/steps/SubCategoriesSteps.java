@@ -41,7 +41,7 @@ public class SubCategoriesSteps {
 
 	@When("^I choose a category(.*)$")
 	public void i_choose_a_category(String category)  {
-		admin.chooseACategory("container");
+		admin.chooseACategory(category);
 	}
 
 	@When("^I enter code and name subcategory$")

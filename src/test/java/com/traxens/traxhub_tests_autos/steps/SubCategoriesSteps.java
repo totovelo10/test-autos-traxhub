@@ -39,7 +39,7 @@ public class SubCategoriesSteps {
 		admin.clicksOnCreateSubCategoryButton();
 	}
 
-	@When("^I choose a category(.*)$")
+	@When("^I choose a category (.*)$")
 	public void i_choose_a_category(String category)  {
 		admin.chooseACategory(category);
 	}

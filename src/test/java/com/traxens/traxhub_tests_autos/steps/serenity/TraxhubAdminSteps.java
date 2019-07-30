@@ -42,7 +42,28 @@ public class TraxhubAdminSteps {
 	public void chooseACategory(String category) {
 		if(category == "container")
 		subCategoriesPage.chooseCategoryContainer();
-		
+		switch(category) {
+		  case "container":
+			  subCategoriesPage.chooseCategoryContainer();
+		    break;
+		  case "genset":
+			  subCategoriesPage.chooseCategoryGenset();
+		    break;
+		  case "pallet":
+			  subCategoriesPage.chooseCategoryPallet();
+		    break;
+		  case "trailer":
+			  subCategoriesPage.chooseCategoryTrailer();
+		    break;
+		  case "unknown":
+			  subCategoriesPage.chooseCategoryUnknown();
+		    break;
+		  case "wagon":
+			  subCategoriesPage.chooseCategoryWagon();
+		    break;
+		  default:
+		    // code block
+		}
 	}
 
 	public void enterCodeAndNameCategory() {
@@ -55,7 +76,8 @@ public class TraxhubAdminSteps {
 	}
 
 	public void shouldSeeAMessageAlert() {
-		subCategoriesPage.alertMsgShouldBeVisble();
+		//subCategoriesPage.alertMsgShouldBeVisble();
+		subCategoriesPage.chooseAllSubCategoriesFilter();
 		
 	}
 

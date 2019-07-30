@@ -66,8 +66,8 @@ public class SubCategoriesPage extends PageObject {
 	
 	
 	public void alertMsgShouldBeVisble() {
-		//alertMsg.shouldBeVisible();
-		alertMsg.shouldNotBeVisible();
+		alertMsg.shouldBeVisible();
+		//alertMsg.shouldNotBeVisible();
 	}
 
 }

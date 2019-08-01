@@ -58,6 +58,7 @@ public class SubCategoriesPage extends PageObject {
 	@FindBy(partialLinkText="CodeSubcategory")
 	private List<WebElementFacade> subcategoriesList;
 	private String codeName;
+	private String categoryChoosen;
 
 	public void clickOnCreateSubCategoriesButton() {
 		createSubCategoriesButton.waitUntilEnabled();
@@ -74,13 +75,14 @@ public class SubCategoriesPage extends PageObject {
 	public void chooseCategoryContainer() {
 
 		categoryContainer.click();
+		categoryChoosen = "Container-";
 
 	}
 
 	public void enterCodeAndNameSubCategory() {
 
 		LocalDateTime ldt = LocalDateTime.now();
-		codeName= "CodeSubcategory-"+DateTimeFormatter.ofPattern("yyyyMMddHHmmss", Locale.ENGLISH).format(ldt);
+		codeName= categoryChoosen+DateTimeFormatter.ofPattern("yyyyMMddHHmmss", Locale.ENGLISH).format(ldt);
 		code_field.type(codeName);
 		name_field.type(codeName);
 	}
@@ -98,23 +100,24 @@ public class SubCategoriesPage extends PageObject {
 
 	public void chooseCategoryGenset() {
 		categoryGenset.click();
+		categoryChoosen = "Genset-";
 
 	}
 	public void chooseCategoryPallet() {
 		categoryPallet.click();
-
+		categoryChoosen = "Pallet-";
 	}
 	public void chooseCategoryTrailer() {
 		categoryTrailer.click();
-
+		categoryChoosen = "Trailer-";
 	}
 	public void chooseCategoryUnknown() {
 		categoryUnknown.click();
-
+		categoryChoosen = "Unknown-";
 	}
 	public void chooseCategoryWagon() {
 		categoryWagon.click();
-
+		categoryChoosen = "Wagon-";
 	}
 
 	public void chooseAllSubCategoriesFilter() {

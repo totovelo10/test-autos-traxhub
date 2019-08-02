@@ -26,22 +26,23 @@ Feature: Manage sub-categories equipments
     Given I login as a traxens Admin
     When I click on manage
   """ Then I should see sub-categories item
-
+  
+@CreateSubcategory
   Scenario Outline: See sub-categories item
     Given I login as a traxens Admin
     When I click on manage
     And I click on subcategory item
     And I click on create subcategory button
     And I choose a category <category>
-    And I enter code and name subcategory
+    And I enter code <code> and name <category> subcategory
     And I save
-    Then I should see a message alert
+    Then I should see the subcategory <code> in subcategory list
 
     Examples: 
-      | category  |
-      | container |
-      | genset    |
-      | pallet    |
-      | trailer   |
-      | unknown   |
-      | wagon     |
+      | category  | code                 | name                  |
+      | container | Container-TestsAutos | Container Tests Autos |
+      | genset    | Genset-TestsAutos    | Genset Tests Autos    |
+      | pallet    | Pallet-TestsAutos    | Pallet Tests Autos    |
+      | trailer   | Trailer-TestsAutos   | Trailer Tests Autos   |
+      | unknown   | Unknown-TestsAutos   | Unknown Tests Autos   |
+      | wagon     | Wagon-TestsAutos     | WagonTests Autos      |

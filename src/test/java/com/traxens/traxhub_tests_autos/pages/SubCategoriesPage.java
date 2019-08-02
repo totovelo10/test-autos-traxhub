@@ -1,11 +1,9 @@
 package com.traxens.traxhub_tests_autos.pages;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
-import java.util.Locale;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 
 import net.serenitybdd.core.annotations.findby.FindBy;
 import net.serenitybdd.core.pages.PageObject;
@@ -57,10 +55,17 @@ public class SubCategoriesPage extends PageObject {
 
 	@FindBy(partialLinkText="CodeSubcategory")
 	private List<WebElementFacade> subcategoriesList;
-	private String codeName;
-	private String categoryChoosen;
+
+	@FindBy(xpath="//div[@role='row']")
+	private List<WebElementFacade> rowsList;
+	
+	@FindBy(xpath="//span[@translate='entity.action.delete']")
+	private WebElementFacade deletePopupButton;
+
+
 
 	public void clickOnCreateSubCategoriesButton() {
+
 		createSubCategoriesButton.waitUntilEnabled();
 		createSubCategoriesButton.waitUntilClickable();
 		createSubCategoriesButton.click();
@@ -75,16 +80,13 @@ public class SubCategoriesPage extends PageObject {
 	public void chooseCategoryContainer() {
 
 		categoryContainer.click();
-		categoryChoosen = "Container-";
+
 
 	}
 
-	public void enterCodeAndNameSubCategory() {
-
-		LocalDateTime ldt = LocalDateTime.now();
-		codeName= categoryChoosen+DateTimeFormatter.ofPattern("yyyyMMddHHmmss", Locale.ENGLISH).format(ldt);
-		code_field.type(codeName);
-		name_field.type(codeName);
+	public void enterCodeAndNameSubCategory(String code, String name) {
+		code_field.type(code);
+		name_field.type(name);
 	}
 
 	public void clickOnSaveButton() {
@@ -100,43 +102,53 @@ public class SubCategoriesPage extends PageObject {
 
 	public void chooseCategoryGenset() {
 		categoryGenset.click();
-		categoryChoosen = "Genset-";
+
 
 	}
 	public void chooseCategoryPallet() {
 		categoryPallet.click();
-		categoryChoosen = "Pallet-";
+
 	}
 	public void chooseCategoryTrailer() {
 		categoryTrailer.click();
-		categoryChoosen = "Trailer-";
+
 	}
 	public void chooseCategoryUnknown() {
 		categoryUnknown.click();
-		categoryChoosen = "Unknown-";
+
 	}
 	public void chooseCategoryWagon() {
 		categoryWagon.click();
-		categoryChoosen = "Wagon-";
+
 	}
 
 	public void chooseAllSubCategoriesFilter() {
+		this.getDriver().navigate().refresh();
 		allSubcategoriesFilter.waitUntilPresent();
 		allSubcategoriesFilter.waitUntilVisible();
 		allSubcategoriesFilter.waitUntilEnabled();
 		allSubcategoriesFilter.waitUntilClickable();
 		allSubcategoriesFilter.click();
+	}
+
+	public void subcategoryShouldbeVisible(String subcategoryCode) {
 
 
-		this.getDriver().navigate().refresh();
+
+
 		for(int i=0;i<subcategoriesList.size();i++) {
-			if (subcategoriesList.get(i).getText()==codeName) {
+			if (subcategoriesList.get(i).getText()== subcategoryCode) {
 				subcategoriesList.get(i).shouldBeVisible();
 			}
 		}
 
-		allSubcategoriesFilter.click();
 
+	}
+
+	public void deleteSubcategory(String subcategoryCode) {
+		WebElement deleteSubcategoryButton = getDriver().findElement(By.xpath("//button[@href='#/equipmentSubcategory/"+subcategoryCode+"/delete']"));
+		deleteSubcategoryButton.click();                                        //button[@href='#/equipmentSubcategory/Container-TestsAutos/delete']
+		deletePopupButton.click();
 	}
 
 

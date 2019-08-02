@@ -62,12 +62,12 @@ public class TraxhubAdminSteps {
 			  subCategoriesPage.chooseCategoryWagon();
 		    break;
 		  default:
-		    // code block
+		    
 		}
 	}
 
-	public void enterCodeAndNameCategory() {
-		subCategoriesPage.enterCodeAndNameSubCategory();
+	public void enterCodeAndNameCategory(String code,String name) {
+		subCategoriesPage.enterCodeAndNameSubCategory(code,name);
 		
 	}
 
@@ -79,6 +79,15 @@ public class TraxhubAdminSteps {
 		//subCategoriesPage.alertMsgShouldBeVisble();
 		subCategoriesPage.chooseAllSubCategoriesFilter();
 		
+	}
+	
+	public void shouldSeeASubcategory(String subcategoryCode) {
+		subCategoriesPage.chooseAllSubCategoriesFilter();
+		subCategoriesPage.subcategoryShouldbeVisible(subcategoryCode);		
+	}
+	
+	public void deleteSubcategory(String subcategoryCode) {
+		subCategoriesPage.deleteSubcategory(subcategoryCode);
 	}
 
 }

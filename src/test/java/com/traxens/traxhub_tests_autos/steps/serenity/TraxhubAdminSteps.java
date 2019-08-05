@@ -23,7 +23,7 @@ public class TraxhubAdminSteps {
 
 		homePage.clickOnManage();
 	}
-	
+
 	@Step
 	public void subCategoriesIsVisible() {
 		homePage.subcategoriesItemShouldBeVisible();
@@ -31,44 +31,44 @@ public class TraxhubAdminSteps {
 
 	public void clicksOnSubCategoryItem() {
 		homePage.clicksOnSubCategoriesItem();
-		
+
 	}
 
 	public void clicksOnCreateSubCategoryButton() {
-		
+
 		subCategoriesPage.clickOnCreateSubCategoriesButton();
 	}
 
 	public void chooseACategory(String category) {
 		if(category == "container")
-		subCategoriesPage.chooseCategoryContainer();
+			subCategoriesPage.chooseCategoryContainer();
 		switch(category) {
-		  case "container":
-			  subCategoriesPage.chooseCategoryContainer();
-		    break;
-		  case "genset":
-			  subCategoriesPage.chooseCategoryGenset();
-		    break;
-		  case "pallet":
-			  subCategoriesPage.chooseCategoryPallet();
-		    break;
-		  case "trailer":
-			  subCategoriesPage.chooseCategoryTrailer();
-		    break;
-		  case "unknown":
-			  subCategoriesPage.chooseCategoryUnknown();
-		    break;
-		  case "wagon":
-			  subCategoriesPage.chooseCategoryWagon();
-		    break;
-		  default:
-		    
+		case "container":
+			subCategoriesPage.chooseCategoryContainer();
+			break;
+		case "genset":
+			subCategoriesPage.chooseCategoryGenset();
+			break;
+		case "pallet":
+			subCategoriesPage.chooseCategoryPallet();
+			break;
+		case "trailer":
+			subCategoriesPage.chooseCategoryTrailer();
+			break;
+		case "unknown":
+			subCategoriesPage.chooseCategoryUnknown();
+			break;
+		case "wagon":
+			subCategoriesPage.chooseCategoryWagon();
+			break;
+		default:
+
 		}
 	}
 
 	public void enterCodeAndNameCategory(String code,String name) {
 		subCategoriesPage.enterCodeAndNameSubCategory(code,name);
-		
+
 	}
 
 	public void save() {
@@ -78,16 +78,30 @@ public class TraxhubAdminSteps {
 	public void shouldSeeAMessageAlert() {
 		//subCategoriesPage.alertMsgShouldBeVisble();
 		subCategoriesPage.chooseAllSubCategoriesFilter();
-		
+
 	}
-	
+
+
 	public void shouldSeeASubcategory(String subcategoryCode) {
 		subCategoriesPage.chooseAllSubCategoriesFilter();
 		subCategoriesPage.subcategoryShouldbeVisible(subcategoryCode);		
 	}
-	
-	public void deleteSubcategory(String subcategoryCode) {
-		subCategoriesPage.deleteSubcategory(subcategoryCode);
+
+
+	public void deleteSubcategoryAfter(String subcategoryCode) {
+		subCategoriesPage.deleteSubcategoryAfter(subcategoryCode);
+	}
+
+	public void chooseAllSubCategoriesFilter() {
+		subCategoriesPage.chooseAllSubCategoriesFilter();
+	}
+
+	// A factoriser avec AuthenticationSteps
+	public void deconnect() {
+		homePage.clickOnDropDown();
+		homePage.clickOnLogOut();
+		homePage.clickOkDeconnectButton();
+
 	}
 
 }

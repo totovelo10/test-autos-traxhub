@@ -3,13 +3,16 @@ package com.traxens.traxhub_tests_autos.pages;
 import java.util.List;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
+
 
 import net.serenitybdd.core.annotations.findby.FindBy;
 import net.serenitybdd.core.pages.PageObject;
 import net.serenitybdd.core.pages.WebElementFacade;
 import net.thucydides.core.annotations.DefaultUrl;
-
+import org.openqa.selenium.JavascriptExecutor;
 @DefaultUrl("/equipmentSubcategory")
 public class SubCategoriesPage extends PageObject {
 
@@ -56,11 +59,14 @@ public class SubCategoriesPage extends PageObject {
 	@FindBy(partialLinkText="CodeSubcategory")
 	private List<WebElementFacade> subcategoriesList;
 
-	@FindBy(xpath="//div[@role='row']")
+	@FindBy(xpath="//button[@type='submit']")
 	private List<WebElementFacade> rowsList;
-	
+
 	@FindBy(xpath="//span[@translate='entity.action.delete']")
 	private WebElementFacade deletePopupButton;
+
+	@FindBy(xpath="//span[@class='badge badge-primary ng-binding']")
+	private WebElementFacade badge;
 
 
 
@@ -123,6 +129,8 @@ public class SubCategoriesPage extends PageObject {
 	}
 
 	public void chooseAllSubCategoriesFilter() {
+		createSubCategoriesButton.waitUntilEnabled();
+		createSubCategoriesButton.waitUntilClickable();
 		this.getDriver().navigate().refresh();
 		allSubcategoriesFilter.waitUntilPresent();
 		allSubcategoriesFilter.waitUntilVisible();
@@ -132,24 +140,24 @@ public class SubCategoriesPage extends PageObject {
 	}
 
 	public void subcategoryShouldbeVisible(String subcategoryCode) {
-
-
-
-
 		for(int i=0;i<subcategoriesList.size();i++) {
 			if (subcategoriesList.get(i).getText()== subcategoryCode) {
 				subcategoriesList.get(i).shouldBeVisible();
 			}
 		}
 
-
 	}
+	public void deleteSubcategoryAfter(String subcategoryCode) {
 
-	public void deleteSubcategory(String subcategoryCode) {
-		WebElement deleteSubcategoryButton = getDriver().findElement(By.xpath("//button[@href='#/equipmentSubcategory/"+subcategoryCode+"/delete']"));
-		deleteSubcategoryButton.click();                                        //button[@href='#/equipmentSubcategory/Container-TestsAutos/delete']
+
+		WebElementFacade deleteSubcategoryButton = find(By.xpath("//button[@href='#/equipmentSubcategory/"+subcategoryCode+"/delete']"));
+			while(!deleteSubcategoryButton.isCurrentlyEnabled()) {
+				WebDriver driver = getDriver();
+				((JavascriptExecutor) driver).executeScript("var elem= document.querySelector(\"div[style='overflow: scroll;']\");"
+						+ "elem.scrollBy(0,1000)");
+			}
+		deleteSubcategoryButton.click();                                       
 		deletePopupButton.click();
+		
 	}
-
-
 }

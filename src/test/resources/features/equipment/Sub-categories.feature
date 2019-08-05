@@ -22,13 +22,13 @@ Feature: Manage sub-categories equipments
   I want to manage Sub-categories equipment
   
   
-  """  Scenario: See sub-categories item
+  Scenario: See sub-categories item
     Given I login as a traxens Admin
     When I click on manage
-  """ Then I should see sub-categories item
-  
-@CreateSubcategory
-  Scenario Outline: See sub-categories item
+  Then I should see sub-categories item
+
+  @CreateSubcategory
+  Scenario Outline: Add all type of subcategories
     Given I login as a traxens Admin
     When I click on manage
     And I click on subcategory item
@@ -45,4 +45,4 @@ Feature: Manage sub-categories equipments
       | pallet    | Pallet-TestsAutos    | Pallet Tests Autos    |
       | trailer   | Trailer-TestsAutos   | Trailer Tests Autos   |
       | unknown   | Unknown-TestsAutos   | Unknown Tests Autos   |
-      | wagon     | Wagon-TestsAutos     | WagonTests Autos      |
+      | wagon     | Wagon-TestsAutos     | Wagon Tests Autos     |

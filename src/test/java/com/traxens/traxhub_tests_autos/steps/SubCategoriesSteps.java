@@ -1,11 +1,14 @@
 package com.traxens.traxhub_tests_autos.steps;
 
+
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import com.traxens.traxhub_tests_autos.steps.serenity.TraxhubAdminSteps;
 
 import cucumber.api.java.After;
+import cucumber.api.java.Before;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
@@ -16,8 +19,8 @@ public class SubCategoriesSteps {
 	@Steps
 	TraxhubAdminSteps admin;
 
-	ArrayList <String> subcategoryCodeList=new ArrayList<String>();
 
+	ArrayList <String> subcategoryCodeList= new ArrayList<String>();
 	@Given("^I login as a traxens Admin$")
 	public void i_login_as_a_traxens_Admin()  {
 		admin.login();
@@ -57,7 +60,10 @@ public class SubCategoriesSteps {
 
 	}
 
-
+	@When("I choose all subcategories filter")
+	public void i_choose_all_subcategories_filter() {
+		admin.chooseAllSubCategoriesFilter();
+	}
 	@When("^I save$")
 	public void i_save() {
 		admin.save();
@@ -76,11 +82,14 @@ public class SubCategoriesSteps {
 		admin.shouldSeeASubcategory(subcategoryCode);
 	}
 
+
+
+
 	@After("@CreateSubcategory")
 	public void deleteSubcategories(){
 		for(int i=0;i<subcategoryCodeList.size();i++) {
-			
-			admin.deleteSubcategory(subcategoryCodeList.get(i));
+			System.out.println(subcategoryCodeList.get(i));
+			admin.deleteSubcategoryAfter(subcategoryCodeList.get(i));
 		} 
 
 	}

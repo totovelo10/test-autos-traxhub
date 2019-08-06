@@ -1,5 +1,5 @@
 pipeline {
-	agent any
+	agent { docker { image 'ubuntu:latest' } }
     tools {
     maven 'Maven3'
   }
@@ -42,6 +42,5 @@ pipeline {
 				
             }
        }
-    }
     
 }

@@ -10,8 +10,8 @@ pipeline {
     stages {
         stage('Test') { 
             steps {
-            	sh 'chmod +x chromedriver' 
-                sh 'mvn clean verify -Dwebdriver.driver=chrome' 
+            //	sh 'chmod +x chromedriver' 
+                bat 'mvn clean verify -Dwebdriver.driver=chrome' 
             }   
             
             post {

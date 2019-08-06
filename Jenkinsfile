@@ -1,5 +1,5 @@
 pipeline {
-	agent { docker { image 'ubuntu:latest' }
+	agent { docker { image 'node:7-alpine' }
 	      }
     tools {
     maven 'Maven3'
